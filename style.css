@@ -1,0 +1,126 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  box-sizing: inherit;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+img {
+  width: 100%;
+}
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu__list {
+  display: flex;
+  align-items: center;
+}
+.menu__item:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.header__burger-btn {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.header__burger-btn span {
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  left: 5px;
+  transition: opacity 0.2s, transform 0.5s, background-color 0.5s;
+}
+.header__burger-btn span:nth-child(1) {
+  transform: translateY(-10px);
+}
+.header__burger-btn span:nth-child(3) {
+  transform: translateY(10px);
+}
+
+.header.open .header__burger-btn span {
+  background-color: white;
+}
+.header.open .header__burger-btn span:nth-child(1) {
+  transform: translateY(0) rotate(45deg);
+}
+.header.open .header__burger-btn span:nth-child(2) {
+  opacity: 0;
+}
+.header.open .header__burger-btn span:nth-child(3) {
+  transform: translateY(0) rotate(-45deg);
+}
+.burger-body {
+  display: none;
+}
+@media (max-width: 992px) {
+  .menu {
+    z-index: 100;
+    visibility: hidden;
+    width: 300px;
+    position: absolute;
+    left: -300px;
+    top: 0;
+    padding-top: 5rem;
+    height: 100vh;
+    background-color: rgb(46, 46, 228);
+    transition: transform 0.5s;
+  }
+  .header__burger-btn {
+    display: block;
+    z-index: 200;
+  }
+  .menu__list {
+    display: block;
+  }
+  .menu__list .menu__link {
+    display: block;
+    font-size: 21px;
+    color: #fff;
+    padding: 2rem 1rem;
+  }
+
+  .menu__item:not(:last-child) {
+    margin-right: 0;
+  }
+  .header.open .menu {
+    visibility: visible;
+    transform: translateX(100%);
+  }
+
+  .header.open .burger-body {
+    display: flex;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
